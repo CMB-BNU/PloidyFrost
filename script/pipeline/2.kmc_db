@@ -1,0 +1,14 @@
+thread=$1
+dir=$2
+name=$3
+
+echo -n "">FILES_${name}
+for i in `cat $4`
+do
+	ls ${dir}/${i}*trim*.fq.gz>>${dir}/FILES_${name}
+done
+	mkdir ${dir}/tmp_${name}
+	echo "kmc run..."
+	kmc -ci1 -cs10000 -k25 -t${thread} @${dir}/FILES_${name} ${dir}/kmc_${name} ${dir}/tmp_${name} 1>${dir}/log_kmc 2>${dir}/err_kmc 
+	echo "kmc end..."
+	kmc_tools transform ${dir}/kmc_${name} histogram ${dir}/hist_${name}

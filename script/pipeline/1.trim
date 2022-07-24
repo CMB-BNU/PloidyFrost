@@ -1,0 +1,20 @@
+thread=$1
+fastqdir=$2
+idlist=$3
+trimdir=$2  #output dir for trimming
+trimmo="trimmomatic-0.32.jar"
+
+for i in `cat $idlist`
+do
+	read1=${i}"_1$4"
+	read2=${i}"_2$4"
+	date
+	echo "Trimming $i ..."
+if [ -f "$fastqdir/$read1" ]
+then
+  java -jar $trimmo PE -threads $thread -trimlog $trimdir/$i.trim.log -phred33 $fastqdir/$read1 $fastqdir/$read2 $trimdir/$i.trim1.fq.gz $trimdir/$i.u1.fq.gz $trimdir/$i.trim2.fq.gz $trimdir/$i.u2.fq.gz LEADING:10 TRAILING:10 SLIDINGWINDOW:3:20 MINLEN:50 
+else
+  echo "$fastqdir/$read1 not found"
+fi
+done
+

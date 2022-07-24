@@ -1,0 +1,8 @@
+thread=$1
+dir=$2
+name=$3
+cutoff=$4
+	echo "kmc_tools run..."
+	kmc_tools -t${thread} filter -hm ${dir}/kmc_${name} @${dir}/FILES_${name} -ci${cutoff} ${dir}/${name}_filtered.fq 1>${dir}/log_filter 2>${dir}/err_filter 
+	echo "kmc_tools end..."
+#done

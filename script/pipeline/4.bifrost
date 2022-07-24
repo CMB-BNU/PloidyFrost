@@ -1,0 +1,4 @@
+thread=$1
+dir=$2
+name=$3
+Bifrost build -i -d -k 25 -v -r ${name}_filtered.fq -o ${name} -t ${thread} 1>${dir}/log_bifrost 2>${dir}/err_bifrost 

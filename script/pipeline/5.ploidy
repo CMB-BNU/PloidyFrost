@@ -1,0 +1,7 @@
+thread=$1
+dir=$2
+name=$3
+PloidyFrost -g ${dir}/${name}.gfa -d ${dir}/kmc_${name} -t $thread -v -o ${name} -l $4 -u $5 1>${dir}/log_ploidy 2>${dir}/err_ploidy 
+PloidyFrost model -g ${dir}/PloidyFrost_output/${name}_allele_frequency.txt -o ${dir}/${name} 
+p=$(tail -1 ${dir}/${name}_model_result.txt |cut -d " " -f6)
+Rscript Drawfreq.R -f ${dir}/PloidyFrost_output/${name}_allele_frequency.txt -t ${name} -o ${name} -p $p 
