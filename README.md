@@ -7,7 +7,7 @@ reference-free estimation of ploidy level from whole genome sequencing data base
 
 ```sh
 
-$ git clone https://github.com/BlueBerrySun/PloidyFrost.git
+$ git clone https://github.com/CMB-BNU/PloidyFrost.git
 $ cd PloidyFrost && mkdir build && cd build
 $ cmake ..
 $ make
