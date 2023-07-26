@@ -83,10 +83,10 @@ ExternalProject_Add(
   add_dependencies(kmc kmc_lib)
 
 
-find_library(pthread REQUIRED)
-find_library(z REQUIRED)
+find_package(Threads)
+find_package(ZLIB)
 
 add_executable(PloidyFrost ${SOURCES})
 
 
-target_link_libraries(PloidyFrost  pthread z  bifrost kmc )
+target_link_libraries(PloidyFrost  ${CMAKE_THREAD_LIBS_INIT} z  bifrost kmc )
